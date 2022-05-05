@@ -2,36 +2,44 @@ from lark import Lark, Tree, Transformer
 from lark.visitors import CollapseAmbiguities
 
 my_grammar = """
-start: subj obj vp
+start: np np* vp* cp*
 
-np: det adj* n | det adj* n pp | adj* n  
+cp: conj np vp*
 
-vp: v np | v pp | v np pp
+np: det* adj* n | det adj* n pp | adj* n pp
 
-pp: prep np
+vp: np v | v pp | v np pp | v adv
 
-det: "ek" | "vo" | "ye" | "aur" | "na"
+pp: prep np | prep
 
-n: "aadmi" | "aurat" | "dhoorbeen" | "naan" | "Jatt" | "chali" | "daaktar" | "qismat"
+det: "ek" | "vo" | "ye" | "meri" | "us"
 
-v: "dekha" | "chali" | "karni" | "kheencho"
+conj: "aur" | "lekin" | "ya" | "kyunki"
 
-prep: "saath" | "ki" | "aise" | "par" | "pe" | "waise" | "jaise" | "se"
+n: "aadmi" | "aurat" | "dhoorbeen" | "jhaad" | "chali" | "raste" | "tasveer" | "ladki" | "beti" | "daakter" | "ladka" | "chai" | "taare"
 
-adj: "badaa" | "chota" | "budda" | "jawaan" | "Jatt"
+v: "dekhraha" | "chalraha" | "karni" | "kheencho" | "khadi" | "soti" | "shaadi" | "bhanaraha"
 
-adv: "kaise"
+prep: "ke saath" | "ke uppar" | "aise" | "par" | "pe" | "ke paas" | "jaise" | "se" | "ke baad" | "ke piche"  
+
+adj: "badaa" | "chota" | "budda" | "jawaan" | "naraaz" | "lambi" | 
+
+adv: "kaise" | "hai" | "kareygi"
 
 %import common.WS 
 %ignore WS 
 """
-
 parser = Lark(my_grammar, ambiguity='explicit')
 corpus = """
-mujhe aam pasand hain
-vo khaana khaa raha hain
-Ek aadmi paani peeraha hain
-Ek aurat padrahi hain
+ye ladki khadi hai
+vo ladki jhaad ke piche khadi hai
+ke piche khadi hai jhaad ladki vo 
+ye naraaz ladki khadi hai aur aadmi chalraha hai lekin aurat soti hai
+vo budda aadmi chalraha hai
+meri beti daakter se shaadi kareygi
+vo ladka chai bhanaraha hai
+vo ladki dhoorbeen se taare dekhraha hai
+meri beti us aurat ke saath tasveer kheencho
 """
 for sent in corpus[1:].split('\n'):
   print("======\nsentence=",sent)
