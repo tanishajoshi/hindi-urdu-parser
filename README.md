@@ -14,8 +14,8 @@ from English grammar.
 2. Feminine and Masculine genders exist for all words
 3. Multitude of ways to address other people (pronouns) that depend on the level of respect & formality given to them
 4. Verb conjugation
-    4a. For the purposes of this project, we have decided to not handle
-    verb conjugation with the parser, as it can introduce a lot of complexity. 
+
+For the purposes of this project, we have decided to not handle verb conjugation with the parser, as it can introduce a lot of complexity. 
 
 Usage 
 ```
