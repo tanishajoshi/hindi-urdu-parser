@@ -2,7 +2,7 @@ from lark import Lark, Tree, Transformer
 from lark.visitors import CollapseAmbiguities
 
 my_grammar = """
-start: np vp
+start: subj obj vp
 
 np: det adj* n | det adj* n pp | adj* n  
 
@@ -10,15 +10,17 @@ vp: v np | v pp | v np pp
 
 pp: prep np
 
-det: "the" | "a" | "an"
+det: "ek" | "vo" | "ye" | "aur" | "na"
 
-n: "man" | "woman" | "telescope" | "waffles" | "British" | "left" | "Falklands"
+n: "aadmi" | "aurat" | "dhoorbeen" | "naan" | "Jatt" | "chali" | "daaktar" | "qismat"
 
-v: "saw" | "left" | "waffles"
+v: "dekha" | "chali" | "karni" | "kheencho"
 
-prep: "with" | "to" | "like" | "on" | "from"
+prep: "saath" | "ki" | "aise" | "par" | "pe" | "waise" | "jaise" | "se"
 
-adj: "big" | "little" | "old" | "young" | "British"
+adj: "badaa" | "chota" | "budda" | "jawaan" | "Jatt"
+
+adv: "kaise"
 
 %import common.WS 
 %ignore WS 
@@ -26,12 +28,10 @@ adj: "big" | "little" | "old" | "young" | "British"
 
 parser = Lark(my_grammar, ambiguity='explicit')
 corpus = """
-the man saw the woman
-the man saw the woman with the telescope
-saw man the woman with the
-the British left waffles on the Falklands
-time flies like an arrow
-the fruit flies like a banana
+mujhe aam pasand hain
+vo khaana khaa raha hain
+Ek aadmi paani peeraha hain
+Ek aurat padrahi hain
 """
 for sent in corpus[1:].split('\n'):
   print("======\nsentence=",sent)
