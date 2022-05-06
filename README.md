@@ -21,4 +21,12 @@ Usage
 ```
 python3 parser.py
 ```
+## Parser Sentence Structure
+* The structure of a sentence in hindi is highly complex and variable
+* For this use case, we go with a basic use case
+* A sentence consists of np np* vp* cp* 
+* I.E. a noun phrase followed by an optional number of noun phrases, verb phrases, and conjunctive phrases
+* Conjunctive phrases consist of a conjunction noun phrase and an optional number of verb phrases.
+* Noun phrases consist of determiners (in English commonly: a/an/the), while in Hindi/Urdu (ek/vo/ye/us/un), adjectives, nouns, and prepositional phrases
+* Verb phrases can consist of noun phrases, verbs, prepositional phrases and adverbs 
 
